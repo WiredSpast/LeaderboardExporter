@@ -10,13 +10,10 @@ import fs from 'fs';
 import path from 'path';
 
 const directoryName = path.resolve('./resources');
-console.log(directoryName);
 
 const uiServer = http.createServer((req, res) => {
-  console.log(req.url?.split('?')[0].split('.').pop());
   switch (req.url?.split('?')[0].split('.').pop()) {
     case 'html':
-      console.log('abc');
       res.writeHead(200, { 'Content-Type': 'text/html' });
       break;
     case 'js':
@@ -34,7 +31,6 @@ const uiServer = http.createServer((req, res) => {
   }
 
   const filePath = path.join(directoryName, req.url?.split('?')[0].substring(1) || 'index.html');
-  console.log(filePath);
 
   fs.readFile(filePath, null, (error, data) => {
     if (error) {
@@ -51,13 +47,11 @@ let serverPort: number;
 getRandomPort().then(port => {
   uiServer.listen(port);
   serverPort = port;
-  console.log(port);
 });
 
 
 export default class WindowedExtension extends Extension {
   private readonly extensionInfo: ExtensionInfo;
-  private readonly htmlPath: string;
   private readonly chromeFlags: string[];
   private windowSocket: WebSocketServer;
   private windowPort: number;
@@ -131,7 +125,7 @@ export default class WindowedExtension extends Extension {
         ws.send(data);
       });
     } else {
-      console.log("Websocket server not launched yet or UI not open");
+      this.writeToConsole("Websocket server not launched yet or UI not open");
     }
   }
 }

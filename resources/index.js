@@ -10,6 +10,16 @@ let boardTable;
 window.onload = () => {
   boardList = document.getElementById('boardList');
   boardTable = document.getElementById('boardTable');
+  document.addEventListener('copy', function (e) {
+    let selectedText = window.getSelection().toString().trim();
+    if (window.clipboardData) {
+      window.clipboardData.setData('text/plain', selectedText);
+    } else {
+      e.clipboardData.setData('text/plain', selectedText);
+    }
+    
+    e.preventDefault();
+  });
 }
 
 webSocket = new WebSocket(`ws://localhost:${ params.get('port') }`);
@@ -115,9 +125,9 @@ function newTableBody(boardTable) {
   return new_body;
 }
 
-function onExtensionInfo(data) {
+function onExtensionInfo(extensionInfo) {
   for (let title of document.getElementsByTagName('title')) {
-    title.innerHTML = `${ data.extensionInfo.name } ${ data.extensionInfo.version }`;
+    title.innerHTML = `${ extensionInfo.name } ${ extensionInfo.version }`;
   }
 }
 

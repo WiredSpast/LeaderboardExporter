@@ -10,7 +10,7 @@ const CLEAR_TYPES = Object.freeze(['alltime', 'daily', 'weekly', 'monthly']);
 const extensionInfo: ExtensionInfo = JSON.parse(readFileSync('./package.json', 'utf8'));
 extensionInfo.name = "Leaderboard Exporter";
 
-const ext = new WindowedExtension(extensionInfo, '--window-size=300,350');
+const ext = new WindowedExtension(extensionInfo, '--window-size=310,350');
 ext.run();
 
 let furniData: FurniData | undefined;
@@ -111,13 +111,17 @@ function onObjectsDataUpdate(hMessage: HMessage) {
 }
 
 function onObjectRemove(hMessage: HMessage) {
+  let id = Number(hMessage.getPacket().readString());
+  
+  allLeaderboards.delete(id)
   ext.sendToUI(JSON.stringify({
     type: 'remove',
-    id: hMessage.getPacket().readString(),
+    id,
   }))
 }
 
 function onOpenOrCloseConnection(hMessage: HMessage) {
+  allLeaderboards.clear();
   ext.sendToUI(JSON.stringify({
     type: 'clear'
   }));
@@ -125,7 +129,12 @@ function onOpenOrCloseConnection(hMessage: HMessage) {
 
 ext.on('uiOpened', () => {
   ext.sendToUI(JSON.stringify({
-    type: 'extensionInfo',
+    type: 'extensioninfo',
     extensionInfo
+  }));
+  
+  ext.sendToUI(JSON.stringify({
+    type: 'leaderboards',
+    leaderboards: [ ...allLeaderboards.values() ],
   }));
 });

@@ -3,7 +3,6 @@
     margin: 0;
 
     font-family: "Segoe UI", sans-serif;
-    user-select: none;
     color: white;
 }
 
@@ -40,6 +39,7 @@ body {
     width: 45px;
 
     background-color: #313335;
+    user-select: none;
 }
 
 .board {
@@ -60,6 +60,7 @@ body {
     overflow-y: scroll;
 
     background-color: #3c3f41;
+    user-select: contain;
 }
 
 .buttons {
@@ -68,6 +69,7 @@ body {
     flex-direction: row;
     justify-content: center;
     gap: 7px;
+    user-select: none;
 }
 
 .stackIcon {
