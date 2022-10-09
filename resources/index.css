@@ -1,0 +1,146 @@
+* {
+    padding: 0;
+    margin: 0;
+
+    font-family: "Segoe UI", sans-serif;
+    user-select: none;
+    color: white;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+#mainView {
+    flex: 1;
+    width: 100%;
+    height: auto;
+    display: flex;
+    overflow-y: scroll;
+}
+
+#boardList {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    padding: 3px 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 45px;
+
+    background-color: #313335;
+}
+
+.board {
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+}
+
+#boardView {
+    padding: 3px;
+    height: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    background-color: #3c3f41;
+}
+
+.buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 7px;
+}
+
+.stackIcon {
+    padding: 8px;
+    width: 55px;
+    height: 55px;
+    position: relative;
+    border-radius: 5px;
+    transition: all 0.5s ease-in-out;
+}
+
+.buttons {
+    padding: 0;
+    margin: 0;
+    gap: 2px;
+    background-color: #3c3f41;
+}
+
+button {
+    margin: 0;
+    min-height: fit-content;
+    height: 100%;
+    padding: 5px;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+
+    background-color: #202124;
+
+    transition: all 0.5s ease-in-out;
+}
+
+button:hover {
+    background-color: #324748;
+}
+
+button.error,
+button.error:hover {
+    background-color: #543434;
+}
+
+button.success,
+button.success:hover {
+    background-color: #3c5434;
+}
+
+button:after {
+    content: 'Export to CSV';
+}
+
+button.empty:after {
+    content: 'No leaderboard selected'
+}
+
+button.canceled:after {
+    content: 'Cancelled export'
+}
+
+button.success:after {
+    content: 'Leaderboard exported!'
+}
+
+td, th {
+    border: 1px solid #737679;
+    padding: 2px 5px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 12px;
+}
+
+td:nth-child(2) {
+    text-align: center;
+}

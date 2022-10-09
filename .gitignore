@@ -1,0 +1,6 @@
+/.idea/
+/node_modules/
+leaderboardexporter.iml
+package-lock.json
+extension.zip
+NodeExtensionSetup.jar

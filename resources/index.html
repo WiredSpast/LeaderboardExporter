@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="index.css">
+    <title>Leaderboard Exporter</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="index.js"></script>
+</head>
+<body>
+    <div id="mainView">
+        <div id="boardList"></div>
+        <div id="boardView">
+            <table id="boardTable">
+                <thead>
+                    <tr>
+                        <th>User(s)</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="buttons">
+        <button id="btnExport" onclick="exportToCSV(this)"></button>
+    </div>
+</body>
+</html>
