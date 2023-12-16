@@ -1,6 +1,6 @@
 {
   "name": "leaderboardexporter",
-  "version": "0.1",
+  "version": "0.2",
   "description": "Export leaderboards to CSV files",
   "main": "src/main.ts",
   "type": "module",
